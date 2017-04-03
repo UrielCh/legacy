@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.minidev</groupId>
+	<artifactId>parent-legacy</artifactId>
+	<version>1.0.7</version>
+	<name>Minidev super pom</name>
+	<description>minidev common properties.</description>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>Chemouni Uriel</name>
+		<url>http://www.minidev.net/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>minidev.net</id>
+		</developer>
+	</developers>
+
+	<url>http://www.minidev.net/</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<httpclient.version>4.3.6</httpclient.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>bind-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>commons</module>
+		<module>conf</module>
+		<module>csv</module>
+		<module>db</module>
+		<module>html</module>
+		<!-- <module>minibase</module> -->
+		<!-- <module>minibase-srv</module> -->
+		<!-- <module>minibase-cli</module> -->
+		<!-- <module>minibase-sql</module> -->
+		<module>types</module>
+		<module>translate</module>
+		<module>xlsx</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>conf</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>minibase-cli</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>minibase-sql</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>xlsx</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>csv</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>db</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>html</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>minibase</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>minibase-srv</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>ovh</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>types</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>translate</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.minidev</groupId>
+				<artifactId>json-smart</artifactId>
+				<version>2.1.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sourceforge.nekohtml</groupId>
+				<artifactId>nekohtml</artifactId>
+				<version>1.9.22</version>
+			</dependency>
+
+			<dependency>
+				<!-- http://mvnrepository.com/artifact/org.apache.httpcomponents -->
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.41</version>
+				<!-- <version>6.0.6</version> -->
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mchange</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>0.9.2</version>
+				<!-- <version>0.9.5.2</version> -->
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>4.0.7.RELEASE</version>
+				<!-- <version>4.0.7.RELEASE</version> -->
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

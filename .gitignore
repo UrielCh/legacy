@@ -1,7 +1,16 @@
 *.class
-
+*/target
+*/.classpath
+*/.project
+*/.settings
+.classpath
+.project
+.settings
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+minibase
+translate
 
 # Package Files #
 *.jar
