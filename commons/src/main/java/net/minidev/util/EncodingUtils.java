@@ -7,11 +7,6 @@ import java.util.Hashtable;
 import java.util.TreeSet;
 
 public class EncodingUtils {
-
-	/**
-	 * @see http://fr.wikipedia.org/wiki/Marque_d'ordre_des_octets
-	 *      hasUTF16_LE_BOM
-	 */
 	public static String detectEncondingByBom(byte[] data) {
 		if (data == null)
 			return null;

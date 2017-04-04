@@ -14,7 +14,7 @@ public class HtmlFormat {
 	 * 
 	 * @param text
 	 * 
-	 * @return the string widthout & < >
+	 * @return the string widthout &amp; &lt; &gt;
 	 */
 	public static String escapeHtml(String text) {
 		StringBuilder sb = new StringBuilder(text.length());
@@ -44,7 +44,7 @@ public class HtmlFormat {
 	/**
 	 * escape XML chars &gt; &lt; &amp;
 	 * 
-	 * append string widthout & < >
+	 * append string widthout &amp; &lt; &gt;
 	 */
 	public static StringBuilder escapeHtml(StringBuilder sb, String text) {
 		int len = text.length();

@@ -12,10 +12,11 @@ import java.util.regex.Pattern;
  * 
  * http://ftp.ics.uci.edu/pub/ietf/http/related/iso639.txt
  * 
- * @see http://en.wikipedia.org/w/index.php?title=List_of_ISO_639-1_codes&oldid=133943906
- * @encoding UTF8
+ * http://en.wikipedia.org/w/index.php?title=List_of_ISO_639-1_codes&amp;oldid=133943906
  * 
- * @see VLocale
+ * encoding UTF8
+ * 
+ * see VLocale
  * 
  * @author Uriel Chemouni
  */

@@ -38,7 +38,7 @@ public class DomUtils {
 	private static Logger log = Logger.getLogger(DomUtils.class.toString());
 
 	/**
-	 * @see http://xerces.apache.org/xerces-j/features.html
+	 * see http://xerces.apache.org/xerces-j/features.html
 	 */
 	public static Document toDOMTree(String html) {
 		DOMParser parser = new DOMParser();
@@ -316,43 +316,6 @@ public class DomUtils {
 		return removed;
 	}
 
-	/*
-	 * public static void toText(Node node, StringBuilder out) { boolean
-	 * mustClose = false; String baliseName = null;
-	 * 
-	 * if (node.getNodeType() == Node.ELEMENT_NODE) { baliseName =
-	 * node.getNodeName(); StringBuilder sb = new StringBuilder();
-	 * sb.append("<"); sb.append(baliseName.toLowerCase()); NamedNodeMap atts =
-	 * node.getAttributes();
-	 * 
-	 * for (int i = 0; i < atts.getLength(); i++) { sb.append(" "); Node n =
-	 * atts.item(i); String attName = n.getNodeName(); String attValue =
-	 * n.getNodeValue();
-	 * 
-	 * sb.append(attName).append('='); char quote = '"'; if
-	 * (attValue.indexOf("\"") > 0) quote = '\'';
-	 * sb.append(quote).append(attValue).append(quote); } if
-	 * (node.getFirstChild() == null) sb.append("/>"); else { sb.append(">");
-	 * mustClose = true; } out.append(sb.toString()); } else if
-	 * (node.getNodeType() == Node.TEXT_NODE) { String text =
-	 * node.getNodeValue(); out.append(text); } else if (node.getNodeType() ==
-	 * Node.COMMENT_NODE) { // SKIP } else if (node.getNodeType() ==
-	 * Node.DOCUMENT_NODE) { // Balise ROOT Rien a faire. } else if
-	 * (node.getNodeType() == Node.DOCUMENT_TYPE_NODE) { DocumentType docType =
-	 * (DocumentType) node; out.append("<!DOCTYPE html PUBLIC \"");
-	 * out.append(docType.getPublicId()); out.append("\"\r\n      \"");
-	 * out.append(docType.getSystemId()); out.append("\">\r\n"); // html PUBLIC
-	 * "-//W3C//DTD XHTML 1.0 Transitional//EN" //
-	 * "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> } else { //
-	 * org.springframework.util.xml.DomUtils Log.error(DomUtils.class,
-	 * "Unknow Node type:" + node.getNodeType()); }
-	 * 
-	 * Node child = node.getFirstChild(); while (child != null) { toText(child,
-	 * out); child = child.getNextSibling(); } if (mustClose) {
-	 * out.append("</").append(node.getNodeName().toLowerCase()).append(">"); }
-	 * }
-	 */
-
 	private static XPath xpath = XPathFactory.newInstance().newXPath();
 
 	public static List<Node> evalXPath(Node node, String xPath) {
@@ -397,10 +360,6 @@ public class DomUtils {
 
 		private boolean done = false;
 		private Node cached;
-
-		// public NodeIteratorFilter(Node parent) {
-		// this.parent = Arrays.asList(parent).iterator();
-		// }
 
 		public NodeIteratorFilter(Iterator<Node> parent) {
 			this.parent = parent;
@@ -498,36 +457,5 @@ public class DomUtils {
 		public void remove() {
 			// Dummy
 		}
-
 	}
-	/*
-	 * static class NodeIterator implements Iterator<Node> { private boolean
-	 * done = false; private Node cached;
-	 * 
-	 * private Stack<NodeList> stack = new Stack<NodeList>(); private
-	 * Stack<int[]> stackPos = new Stack<int[]>();
-	 * 
-	 * public NodeIterator(Node node) { stack.add(node.getChildNodes());
-	 * stackPos.add(new int[] { 0 }); cached = node; }
-	 * 
-	 * @Override public boolean hasNext() { if (cached != null) return true; if
-	 * (done) return false;
-	 * 
-	 * while (true) { if (stack.isEmpty()) { done = true; break; } NodeList peek
-	 * = stack.peek(); int[] peekPos = stackPos.peek();
-	 * 
-	 * if (peek.getLength() > peekPos[0]) { cached = peek.item(peekPos[0]++);
-	 * NodeList childes = cached.getChildNodes(); if (childes.getLength() == 0)
-	 * ; // FINI else { stack.push(childes); stackPos.push(new int[] { 0 }); }
-	 * break; // trouve } else { peek = stack.pop(); peekPos = stackPos.pop(); }
-	 * } return !done; }
-	 * 
-	 * @Override public Node next() { if (cached == null) { if (!done)
-	 * hasNext(); if (cached == null) throw new NoSuchElementException(); } Node
-	 * ret = cached; cached = null; return ret; }
-	 * 
-	 * @Override public void remove() { throw new
-	 * UnsupportedOperationException(); } }
-	 */
-
 }

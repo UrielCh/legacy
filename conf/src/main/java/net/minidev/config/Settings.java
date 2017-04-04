@@ -17,7 +17,6 @@ import net.minidev.util.CommonsCodex;
 
 /**
  * @author Uriel
- * @see Environment
  */
 public class Settings {
 	static Logger logger = Logger.getLogger(Settings.class.getName());

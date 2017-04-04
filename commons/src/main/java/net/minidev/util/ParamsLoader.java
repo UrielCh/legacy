@@ -63,11 +63,8 @@ public class ParamsLoader {
 	}
 
 	/**
-	 * @param <E>
-	 * 
 	 * @param param
 	 * @throws IOException
-	 * @throws ConfigurationException
 	 */
 	public void subLoadConf(String param) throws IOException {
 		String confFile = get(param);

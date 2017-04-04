@@ -93,7 +93,7 @@ public class DSNInfo {
 	}
 
 	/**
-	 * @see com.mysql.jdbc.ConnectionPropertiesImpl
+	 * see com.mysql.jdbc.ConnectionPropertiesImpl
 	 */
 	public Properties getConnectionProperties() {
 		Properties properties = new Properties();
@@ -135,9 +135,7 @@ public class DSNInfo {
 	}
 
 	/**
-	 * @see http 
-	 *      ://dev.mysql.com/doc/refman/5.0/en/connector-j-reference-configuration
-	 *      -properties.html
+	 * see http://dev.mysql.com/doc/refman/5.0/en/connector-j-reference-configuration-properties.html
 	 */
 	public String getFullUrl() {
 		boolean containsOpt = url.indexOf('?') > 0;
@@ -283,7 +281,7 @@ public class DSNInfo {
 	DataSource cache_ds = null;
 
 	/**
-	 * @see http://www.djvoo.net/d/C3P0%20manual
+	 * see http://www.djvoo.net/d/C3P0%20manual
 	 */
 	public DataSource getAsDataSource() {
 		if (cache_ds != null)
@@ -335,7 +333,7 @@ public class DSNInfo {
 	}
 
 	/**
-	 * @see org.eclipse.persistence.config. PersistenceUnitProperties
+	 * see org.eclipse.persistence.config.PersistenceUnitProperties
 	 */
 	public Map<String, String> getAsTopLinkProperties() {
 		Map<String, String> jpa_settings = new HashMap<String, String>();

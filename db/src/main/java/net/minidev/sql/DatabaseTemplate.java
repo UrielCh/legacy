@@ -19,9 +19,7 @@ import net.minidev.util.LangUtils;
  * base de template generic SQL
  * 
  * contient toutes les operation generic utilises en SQL
- * 
- * @see DatabaseAccess
- * 
+ *  
  * @author Uriel Chemouni
  */
 public final class DatabaseTemplate {
@@ -59,7 +57,6 @@ public final class DatabaseTemplate {
 	/**
 	 * Select FOUND_ROWS from a statment
 	 * 
-	 * @param stmt
 	 * @return -1 if no found rows founed
 	 */
 	static public int retrieveFoundRows(Statement stmt) {

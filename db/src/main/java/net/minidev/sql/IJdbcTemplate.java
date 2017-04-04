@@ -124,7 +124,7 @@ public class IJdbcTemplate {
 	}
 
 	/**
-	 * ParameterizedRowMapper -> RowMapper in spring 3
+	 * ParameterizedRowMapper -&gt; RowMapper in spring 3
 	 */
 	public <T> T queryForObject(String sql, RowMapper<T> rm, Object... args) throws DataAccessException {
 		return ObjectUtils.isEmpty(args) ? getJdbcOperations().queryForObject(sql, rm) : getJdbcOperations()
@@ -133,7 +133,7 @@ public class IJdbcTemplate {
 
 	/**
 	 * Return a list of Integer, Long, Strings, Date...
-	 * ParameterizedSingleColumnRowMapper -> SingleColumnRowMapper in spring 3
+	 * ParameterizedSingleColumnRowMapper -&gt; SingleColumnRowMapper in spring 3
 	 */
 	public <T> List<T> queryForPrimitives(String sql, Class<T> requiredType, Object... args) throws DataAccessException {
 		SingleColumnRowMapper<T> rm = new SingleColumnRowMapper<T>(requiredType);

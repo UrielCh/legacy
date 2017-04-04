@@ -96,9 +96,6 @@ public class StringUtils {
 		return encodeHex(digest);
 	}
 
-	/**
-	 * @see StringUtils#hashMD5()
-	 */
 	public static String getMD5String(final String stringToHash) {
 		return digestMD5(stringToHash);
 	}

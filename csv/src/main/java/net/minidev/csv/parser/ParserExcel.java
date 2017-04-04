@@ -10,8 +10,6 @@ public class ParserExcel implements Parser {
 	 *            separator char
 	 * @param quote
 	 *            quote char
-	 * @param allowEscape
-	 *            allow the backslash usage.
 	 */
 	public ParserExcel(char sep, char quote) {
 		this.sep = sep;
