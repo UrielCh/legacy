@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -96,22 +97,22 @@ public class XlsxReader {
 				int idx = cell.getColumnIndex();
 				while (next.size() < idx)
 					next.add(null);
-				int type = cell.getCellType();
+				CellType type = cell.getCellTypeEnum();
 				switch (type) {
-				case Cell.CELL_TYPE_BLANK:
+				case BLANK:
 					next.add(null);
 					break;
-				case Cell.CELL_TYPE_BOOLEAN:
+				case BOOLEAN:
 					next.add(cell.getBooleanCellValue());
 					break;
-				case Cell.CELL_TYPE_ERROR:
+				case ERROR:
 					next.add(null);
 					break;
-				case Cell.CELL_TYPE_FORMULA:
+				case FORMULA:
 					try {
 						CellValue cellValue = eval.evaluate(cell);
-						switch (cellValue.getCellType()) {
-						case Cell.CELL_TYPE_NUMERIC:
+						switch (cellValue.getCellTypeEnum()) {
+						case NUMERIC:
 							double v = cellValue.getNumberValue();
 							if (DateUtil.isCellDateFormatted(cell)) {
 								next.add(DateUtil.getJavaDate(v, true));
@@ -131,7 +132,7 @@ public class XlsxReader {
 					}
 					// next.add(cell.getCellFormula());
 					break;
-				case Cell.CELL_TYPE_NUMERIC:
+				case NUMERIC:
 					if (HSSFDateUtil.isCellDateFormatted(cell)) {
 						next.add(HSSFDateUtil.getJavaDate(cell.getNumericCellValue()));
 					} else {
@@ -139,7 +140,7 @@ public class XlsxReader {
 						next.add(raw); // cell.getNumericCellValue()
 					}
 					break;
-				case Cell.CELL_TYPE_STRING:
+				case STRING:
 					next.add(cell.getStringCellValue());
 					break;
 				default:
@@ -151,45 +152,6 @@ public class XlsxReader {
 		}
 		return result;
 	}
-
-	//
-	// public static String[][] readXlx(String filename) throws Exception {
-	// // String filename = "C:/Users/uriel/Dropbox/sos/tel-OVH.xlsx";
-	// XSSFWorkbook wb1 = new XSSFWorkbook(filename);
-	// // wb1.get
-	// XSSFSheet sheet = wb1.getSheet("tel");
-	//
-	// int firstRowNum = sheet.getFirstRowNum();
-	// int lastRowNum = sheet.getLastRowNum();
-	// String[][] datas = new String[lastRowNum - firstRowNum][];
-	// for (int i = firstRowNum; i < lastRowNum; i++) {
-	// Row row = sheet.getRow(i);
-	// if (row == null)
-	// continue;
-	// int last = row.getLastCellNum();
-	// String[] data = new String[last];
-	// for (int j = 0; j < data.length; j++) {
-	// Cell cell = row.createCell(j);
-	// // data[j] = cell.getStringCellValue();
-	// int type = cell.getCellType();
-	// if (type == Cell.CELL_TYPE_BLANK)
-	// data[j] = "";
-	// else if (type == Cell.CELL_TYPE_STRING) {
-	// data[j] = cell.getStringCellValue();
-	// } else if (type == Cell.CELL_TYPE_NUMERIC)
-	// data[j] = Double.toString(cell.getNumericCellValue());
-	//
-	// // * @see Cell#CELL_TYPE_BLANK
-	// // * @see Cell#CELL_TYPE_NUMERIC
-	// // * @see Cell#CELL_TYPE_STRING
-	// // * @see Cell#CELL_TYPE_FORMULA
-	// // * @see Cell#CELL_TYPE_BOOLEAN
-	// // * @see Cell#CELL_TYPE_ERROR
-	// }
-	// datas[i - firstRowNum] = data;
-	// }
-	// return datas;
-	// }
 
 	public static String getString(List<Object> list, int pos) {
 		if (list.size() <= pos)
