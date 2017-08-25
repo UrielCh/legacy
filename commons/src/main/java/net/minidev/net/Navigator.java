@@ -40,6 +40,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.config.SocketConfig;
@@ -441,7 +442,7 @@ public class Navigator {
 		client.setDefaultCookieStore(NO_COOKIE);
 	}
 
-	BasicCookieStore cookieStore;
+	protected BasicCookieStore cookieStore;
 
 	public void resetCookie() {
 		cookieStore = new BasicCookieStore();
@@ -534,6 +535,8 @@ public class Navigator {
 	 */
 	public String doPost(String action, String... params) throws IOException {
 		HttpPost post = new HttpPost(action);
+		post.getParams().setParameter( 
+                ClientPNames.COOKIE_POLICY, org.apache.http.client.params.CookiePolicy.NETSCAPE); 
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		for (String param : params) {
 			int p = param.indexOf("=");

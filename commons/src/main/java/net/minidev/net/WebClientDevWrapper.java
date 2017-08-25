@@ -8,12 +8,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.apache.http.client.HttpClient;
-import org.apache.http.conn.ClientConnectionManager;
-// import org.apache.http.conn.HttpClientConnectionManager;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 /*
  This code is public domain: you are free to use, link and/or modify it in any way you want, for all purposes including commercial applications.
@@ -21,7 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public class WebClientDevWrapper {
 	@SuppressWarnings("deprecation")
-	public static DefaultHttpClient wrapClient(HttpClient base) {
+	public static org.apache.http.impl.client.DefaultHttpClient wrapClient(HttpClient base) {
 		try {
 			// SSLContext ctx = SSLContext.getInstance("TLS");
 			SSLContext ctx = SSLContext.getInstance("SSL");
@@ -38,12 +32,12 @@ public class WebClientDevWrapper {
 				}
 			};
 			ctx.init(null, new TrustManager[] { tm }, null);
-			SSLSocketFactory ssf = new SSLSocketFactory(ctx);
-			ssf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-			ClientConnectionManager ccm = base.getConnectionManager();
-			SchemeRegistry sr = ccm.getSchemeRegistry();
-			sr.register(new Scheme("https", ssf, 443));
-			return new DefaultHttpClient(ccm, base.getParams());
+			org.apache.http.conn.ssl.SSLSocketFactory ssf = new org.apache.http.conn.ssl.SSLSocketFactory(ctx);
+			ssf.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+			org.apache.http.conn.ClientConnectionManager ccm = base.getConnectionManager();
+			org.apache.http.conn.scheme.SchemeRegistry sr = ccm.getSchemeRegistry();
+			sr.register(new org.apache.http.conn.scheme.Scheme("https", ssf, 443));
+			return new org.apache.http.impl.client.DefaultHttpClient(ccm, base.getParams());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;

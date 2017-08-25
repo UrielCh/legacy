@@ -6,13 +6,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.TreeMap;
 
-import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.common.usermodel.HyperlinkType;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.RichTextString;
@@ -94,11 +97,11 @@ public class XlsxBuilder {
 			if (s instanceof String) {
 				cell.setCellValue(s.toString());
 			} else if (s instanceof Number) {
-				cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+				cell.setCellType(CellType.NUMERIC);
 				cell.setCellValue(((Number) s).doubleValue());
 			} else if (s instanceof URL) {
 				org.apache.poi.ss.usermodel.Hyperlink link = null;
-				link = wb.getCreationHelper().createHyperlink(org.apache.poi.common.usermodel.Hyperlink.LINK_URL);
+				link = wb.getCreationHelper().createHyperlink(HyperlinkType.URL);
 				link.setAddress(s.toString());
 				cell.setHyperlink(link);
 				cell.setCellValue(s.toString());
@@ -115,7 +118,7 @@ public class XlsxBuilder {
 					anchor.setRow1(row.getRowNum());
 					anchor.setRow2(row.getRowNum() + 3);
 
-					Drawing drawing = sh.createDrawingPatriarch();
+					Drawing<?> drawing = sh.createDrawingPatriarch();
 
 					// Create the comment and set the text+author
 					Comment comment = drawing.createCellComment(anchor);
@@ -139,7 +142,7 @@ public class XlsxBuilder {
 			style = wb.createCellStyle();
 			style.setFillForegroundColor(IndexedColors.RED.getIndex());
 			Font font = wb.createFont();
-			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+			font.setBold(true);
 			font.setColor(IndexedColors.WHITE.index);
 			style.setFont(font);
 		} else if (color.equalsIgnoreCase("small6")) {
@@ -164,7 +167,7 @@ public class XlsxBuilder {
 			style.setFillForegroundColor(IndexedColors.BLUE.getIndex());
 
 			Font font = wb.createFont();
-			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+			font.setBold(true);
 			font.setColor(IndexedColors.WHITE.index);
 			style.setFont(font);
 		} else if (color.equalsIgnoreCase("lightGreen")) {
@@ -178,17 +181,17 @@ public class XlsxBuilder {
 			style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
 		} else if (color.equalsIgnoreCase("bold")) {
 			style = wb.createCellStyle();
-			style.setBorderBottom(CellStyle.BORDER_MEDIUM);
-			style.setBorderLeft(CellStyle.BORDER_MEDIUM);
-			style.setBorderRight(CellStyle.BORDER_MEDIUM);
-			style.setBorderTop(CellStyle.BORDER_MEDIUM);
+			style.setBorderBottom(BorderStyle.MEDIUM);
+			style.setBorderLeft(BorderStyle.MEDIUM);
+			style.setBorderRight(BorderStyle.MEDIUM);
+			style.setBorderTop(BorderStyle.MEDIUM);
 			org.apache.poi.ss.usermodel.Font font = wb.createFont();
-			font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+			font.setBold(true);
 			style.setFont(font);
 			style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		}
 		if (style != null) {
-			style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			RegisterStyle(color, style);
 		}
 		return style;

@@ -123,6 +123,7 @@ public class XlsxReader {
 								next.add(v);
 							}
 							break;
+						default:
 						}
 					} catch (Exception e) {
 						System.err.println("ERROR evaluating !" + sheet.getSheetName() + " ROW:" + row.getRowNum()
